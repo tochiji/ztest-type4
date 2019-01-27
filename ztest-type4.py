@@ -69,6 +69,7 @@ class zTestType4:
 
 if __name__ == '__main__':
 
+    # 引数がちょうど4つあるか？
     if len(sys.argv[1:]) == 4:
         figures = np.array(sys.argv[1:], dtype=np.float64)
     else:
