@@ -39,6 +39,7 @@ def checkFig(figures):
     else:
         error_usage()
 
+
 class zTestType4:
     def __init__(self, figures):
         n = figures[0, 0]
@@ -53,9 +54,6 @@ class zTestType4:
         self.sig5p = 1.96
         self.sig10p = 1.65
 
-    def resultReturn(self, rate, z):
-        return "{} (検定統計量:{:.5f})".format(rate, z)
-
     def test(self):
         if self.z >= self.sig1p:
             return self.resultReturn("1%有意", self.z)
@@ -66,9 +64,11 @@ class zTestType4:
         else:
             return self.resultReturn("有意差なし", self.z)
 
+    def resultReturn(self, rate, z):
+        return "{} (検定統計量:{:.5f})".format(rate, z)
+
 
 if __name__ == '__main__':
-
     # 引数がちょうど4つあるか？
     if len(sys.argv[1:]) == 4:
         figures = np.array(sys.argv[1:], dtype=np.float64)
@@ -77,6 +77,8 @@ if __name__ == '__main__':
 
     # 2行2列のデータ型に変換
     figures = np.reshape(figures, (2, -1))
+
+    # 数値が検定の前提を満たしているか確認
     checkFig(figures)
 
     st = zTestType4(figures)
